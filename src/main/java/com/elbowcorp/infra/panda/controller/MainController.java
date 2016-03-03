@@ -9,7 +9,6 @@ public class MainController {
 
     @RequestMapping("/")
     public String printWelcome(ModelMap model) {
-        System.out.println("test");
         return "index.html";
     }
 

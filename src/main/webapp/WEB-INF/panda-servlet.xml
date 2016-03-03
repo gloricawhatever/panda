@@ -15,4 +15,25 @@
     <context:component-scan base-package="com.elbowcorp.infra.panda"/>
 
     <mvc:resources mapping="/*" location="/WEB-INF/pages/" />
+
+    <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource"
+          destroy-method="close">
+        <property name="driverClassName" value="com.mysql.jdbc.Driver" />
+        <property name="url" value="jdbc:mysql://elbowdev.cunutvl2tyoc.ap-northeast-2.rds.amazonaws.com:3306/panda" />
+        <property name="username" value="mysql0113" />
+        <property name="password" value="uiop0114" />
+        <property name="validationQuery" value="SELECT 1" />
+    </bean>
+
+    <bean id="transactionManager"
+          class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <property name="dataSource" ref="dataSource" />
+    </bean>
+
+    <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver" />
+    <!--
+    <bean id="AbstractDao" class="com.elbowcorp.infra.panda.AbstractDao">
+        <property name="dataSource" ref="dataSource"></property>
+    </bean>
+    -->
 </beans>
